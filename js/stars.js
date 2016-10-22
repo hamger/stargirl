@@ -41,9 +41,9 @@ starObj.prototype.update = function() {  //规定星星出现位置和总数量
 	this.y += this.ySpd;
 
 	if (this.x > (padLeft + girlWidth) || this.x < (padLeft - 10))
-		this.animate();
+		this.initialize ();
 	else if (this.y > (padTop + girlHeight) || this.y < (padTop - 10))
-		this.animate();
+		this.initialize ();
 
 	this.timer += deltaTime;
 	if (this.timer > 30) {
