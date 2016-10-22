@@ -16,15 +16,14 @@ var lastTime;
 
 function init() {
 
-    document.addEventListener('mousemove', mousemove, false);
+    document.addEventListener('mousemove', mousemove, false); //第三个参数 ：true - 事件句柄在捕获阶段执行 false- 默认。事件句柄在冒泡阶段执行
 
     for (var i = 0; i < num; i++) { //确定每个星星的位置和大小
         stars[i] = new starObj();
-        stars[i].animate();
+        stars[i].initialize(); // 初始化赋值
     }
-
-
-    lastTime = Date.now(); //全局变量
+    
+    lastTime = Date.now(); 
     gameLoop();
 }
 
@@ -42,14 +41,11 @@ window.requestAnimFrame = (function() {
 function gameLoop() {
     window.requestAnimFrame(gameLoop);
     var now = Date.now();
-    deltaTime = now - lastTime; //全局变量
+    deltaTime = now - lastTime; 
     lastTime = now;
-
     fillCanvas();
     drawGirl();
-
     drawStars();
-
     aliveUpdate();
 }
 
@@ -63,15 +59,11 @@ function fillCanvas() {
 }
 
 function mousemove(e) {
-    if (e.offsetX || e.layerX) {
-
-        var px = e.offsetX == undefined ? e.layerX : e.offsetX;
-        var py = e.offsetY == undefined ? e.layerY : e.offsetY;
-
-        if (px > padLeft && px < (padLeft + girlWidth) && py > padTop && py < (padTop + girlHeight)) {
-            switchy = true;
-        } else {
-            switchy = false;
-        }
+    var x = e.pageX;
+    var y = e.pageY;
+    if (x > padLeft && x < (padLeft + girlWidth) && y > padTop && y < (padTop + girlHeight)) {
+        switchy = true;
+    } else {
+        switchy = false;
     }
 }
