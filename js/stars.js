@@ -40,9 +40,9 @@ starObj.prototype.update = function() {  //规定星星出现位置和总数量
 	this.x += this.xSpd;
 	this.y += this.ySpd;
 
-	if (this.x > (padLeft + girlWidth) || this.x < (padLeft - 10))
+	if (this.x > (padLeft + girlWidth - 7) || this.x < padLeft)
 		this.initialize ();
-	else if (this.y > (padTop + girlHeight) || this.y < (padTop - 10))
+	else if (this.y > (padTop + girlHeight - 7) || this.y < padTop)
 		this.initialize ();
 
 	this.timer += deltaTime;
